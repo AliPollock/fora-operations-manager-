@@ -15,14 +15,14 @@ export const MainContentArea = (props: MainContentAreaProps) => {
 					</div>
 				);
 			})}
-			{props.store.viewings.map((viewing) => {
+			{props.store.viewings?.map((viewing) => {
 				return (
 					<div key={viewing.identifier}>
 						<h2>{viewing.companyName}</h2>
 					</div>
 				);
 			})}
-			{props.store.tickets.map((ticket) => {
+			{props.store.tickets?.map((ticket) => {
 				return (
 					<div key={ticket.identifier}>
 						<h2>{ticket.description}</h2>

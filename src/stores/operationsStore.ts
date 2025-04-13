@@ -6,16 +6,20 @@ import { OgMeetingRoomInterface } from "@/models/interfaces/ogMeetingRoomInterfa
 import { OgViewingInterface } from "@/models/interfaces/ogViewingInterface";
 import { observable } from "mobx";
 
-interface OperationsStoreProps {
+export interface OperationsStoreProps {
 	locations: OgLocationInterface[];
+	viewings?: OgViewingInterface[];
+	tickets?: OgMaintainanceTicketInterface[];
+	meetingRooms?: OgMeetingRoomInterface[];
+	roomBookings?: OgMeetingRoomBookingInterface[];
 }
 
 export class OperationsStore {
 	@observable locations: OgLocationInterface[];
 
-	@observable viewings: OgViewingInterface[] = [];
+	@observable viewings?: OgViewingInterface[] = [];
 
-	@observable tickets: OgMaintainanceTicketInterface[] = [];
+	@observable tickets?: OgMaintainanceTicketInterface[] = [];
 
 	@observable meetingRooms?: OgMeetingRoomInterface[] = [];
 
