@@ -5,7 +5,7 @@ import { OgMeetingRoomInterface } from "./ogMeetingRoomInterface";
 import { OgViewingInterface } from "./ogViewingInterface";
 
 export interface OgApiInterface {
-	locations: OgLocationInterface[];
+	locations?: OgLocationInterface[];
 	viewings?: OgViewingInterface[];
 	tickets?: OgMaintainanceTicketInterface[];
 	meetingRooms?: OgMeetingRoomInterface[];

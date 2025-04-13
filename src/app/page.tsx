@@ -1,7 +1,8 @@
 "use client";
 import styles from "./page.module.css";
 import { OperationsStore } from "@/stores/operationsStore";
-import { MainContentArea } from "./components/mainContentArea";
+import { MainContentArea } from "../components/pages/mainContentArea";
+import Link from "next/link";
 
 export default function Home() {
 	// need to populate the appData object with the data from a mock API
@@ -16,6 +17,7 @@ export default function Home() {
 				<div>
 					<MainContentArea store={operationsStore} />
 				</div>
+				<Link href="/calendar">Calendar</Link>
 			</main>
 			<footer className={styles.footer}></footer>
 		</div>

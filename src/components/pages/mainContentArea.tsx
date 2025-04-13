@@ -1,13 +1,20 @@
 import { OperationsStore } from "@/stores/operationsStore";
+import { observer } from "mobx-react";
+import { use, useEffect } from "react";
 
 export interface MainContentAreaProps {
 	store: OperationsStore;
 }
 
-export const MainContentArea = (props: MainContentAreaProps) => {
+export const MainContentArea = observer((props: MainContentAreaProps) => {
+	useEffect(() => {
+		props.store.getLocations(); // Fetch locations when the component mounts
+	}, []);
+
+	console.log("rendering");
 	return (
 		<>
-			{props.store.locations.map((location) => {
+			{props.store.locations?.map((location) => {
 				return (
 					<div key={location.identifier}>
 						<h2>{location.name}</h2>
@@ -45,4 +52,4 @@ export const MainContentArea = (props: MainContentAreaProps) => {
 			})}
 		</>
 	);
-};
+});
