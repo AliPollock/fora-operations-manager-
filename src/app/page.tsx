@@ -1,7 +1,6 @@
 "use client";
-import styles from "./page.module.css";
 import { OperationsStore } from "@/stores/operationsStore";
-import { MainContentArea } from "../components/pages/mainContentArea";
+import { MainContentAreaContainer } from "../components/mainAreas/mainContentAreaContainer";
 import Link from "next/link";
 
 export default function Home() {
@@ -10,16 +9,11 @@ export default function Home() {
 	const operationsStore = new OperationsStore(appData);
 
 	return (
-		<div className={styles.page}>
-			<main className={styles.main}>
-				<h1>Fora Operations Manager</h1>
-				<div>Hello world</div>
-				<div>
-					<MainContentArea store={operationsStore} />
-				</div>
+		<div id={"app"}>
+			<main className="container-fluid">
+				<MainContentAreaContainer store={operationsStore} />
 				<Link href="/calendar">Calendar</Link>
 			</main>
-			<footer className={styles.footer}></footer>
 		</div>
 	);
 }

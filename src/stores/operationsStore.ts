@@ -3,9 +3,10 @@ import { OgLocationInterface } from "@/models/interfaces/ogLocationInterface";
 import { OgMaintainanceTicketInterface } from "@/models/interfaces/ogMaintainanceTicketInterface";
 import { OgMeetingRoomBookingInterface } from "@/models/interfaces/ogMeetingRoomBookingInterface";
 import { OgMeetingRoomInterface } from "@/models/interfaces/ogMeetingRoomInterface";
+import { OG_PAGE_TYPE } from "@/models/interfaces/ogPages";
 import { OgViewingInterface } from "@/models/interfaces/ogViewingInterface";
 import axios from "axios";
-import { makeAutoObservable, observable, runInAction } from "mobx";
+import { action, makeAutoObservable, observable, runInAction } from "mobx";
 
 export interface OperationsStoreProps {
 	locations: OgLocationInterface[];
@@ -26,6 +27,10 @@ export class OperationsStore {
 
 	@observable roomBookings?: OgMeetingRoomBookingInterface[] = [];
 
+	@observable page: OG_PAGE_TYPE = OG_PAGE_TYPE.Home;
+
+	@observable isRightSidebarOpen: boolean = false;
+
 	constructor(props: OgApiInterface) {
 		makeAutoObservable(this);
 		this.locations = props.locations;
@@ -44,6 +49,10 @@ export class OperationsStore {
 		if (props.roomBookings) {
 			this.roomBookings = props.roomBookings;
 		}
+	}
+
+	@action changePage(page: OG_PAGE_TYPE) {
+		this.page = page;
 	}
 
 	getLocations() {
