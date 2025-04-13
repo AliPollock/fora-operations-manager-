@@ -1,4 +1,3 @@
-import { fetchLocations } from "@/mockData/locations";
 import { OgApiInterface } from "@/models/interfaces/ogApiInterface";
 import { OgLocationInterface } from "@/models/interfaces/ogLocationInterface";
 import { OgMaintainanceTicketInterface } from "@/models/interfaces/ogMaintainanceTicketInterface";
@@ -6,7 +5,7 @@ import { OgMeetingRoomBookingInterface } from "@/models/interfaces/ogMeetingRoom
 import { OgMeetingRoomInterface } from "@/models/interfaces/ogMeetingRoomInterface";
 import { OgViewingInterface } from "@/models/interfaces/ogViewingInterface";
 import axios from "axios";
-import { action, makeAutoObservable, observable, runInAction } from "mobx";
+import { makeAutoObservable, observable, runInAction } from "mobx";
 
 export interface OperationsStoreProps {
 	locations: OgLocationInterface[];
