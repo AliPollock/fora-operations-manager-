@@ -1,21 +1,19 @@
 import { OperationsStore } from "@/stores/operationsStore";
+import { MainAreaTop } from "./mainAreaTop";
+import { MainAreaBody } from "./mainAreaBody";
 
 export interface MainContentAreaProps {
 	store: OperationsStore;
 }
 
 export const MainContentArea = (props: MainContentAreaProps) => {
+	props.store.locations?.map((location) => {
+		console.log("location: ", location.name, location.city, location.identifier);
+	});
 	return (
-		<div className="og-main-content-area col-10">
-			{"main content area"}
-			{props.store.locations?.map((location) => {
-				return (
-					<div key={location.identifier}>
-						<h2>{location.name}</h2>
-						<p>{location.city}</p>
-					</div>
-				);
-			})}
+		<div className="og-main-content-area row">
+			<MainAreaTop store={props.store} />
+			<MainAreaBody store={props.store} />
 		</div>
 	);
 };

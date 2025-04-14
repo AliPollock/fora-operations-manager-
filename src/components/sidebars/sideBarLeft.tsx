@@ -1,6 +1,7 @@
 import { OG_PAGE_TYPE } from "@/models/interfaces/ogPages";
 import { OperationsStore } from "@/stores/operationsStore";
 import { SideBarButton } from "../buttons/sideBarButton";
+import { SideBar } from "./sideBar";
 
 interface SideBarLeftProps {
 	store: OperationsStore;
@@ -8,10 +9,23 @@ interface SideBarLeftProps {
 
 export const SideBarLeft = (props: SideBarLeftProps) => {
 	return (
-		<div className="og-sidebar-left col-1 d-flex flex-column">
-			<SideBarButton iconName={"home"} onClick={() => props.store.changePage(OG_PAGE_TYPE.Home)} />
-			<SideBarButton iconName={"calendar"} onClick={() => props.store.changePage(OG_PAGE_TYPE.RoomBookings)} />
-			<SideBarButton iconName={"qrcode"} onClick={() => props.store.changePage(OG_PAGE_TYPE.QRcode)} />
+		<div className="og-sidebar-left  col-1">
+			<SideBar
+				topChildren={
+					<>
+						<img src="/FORA_logomarque_black 1.jpg" alt="Fora Icon" width="24" height="24" className={"og-fora-logo-sidebar"} />
+						<SideBarButton iconName={"bi-house-door"} onClick={() => props.store.changePage(OG_PAGE_TYPE.Home)} />
+						<SideBarButton iconName={"bi-calendar4"} onClick={() => props.store.changePage(OG_PAGE_TYPE.RoomBookings)} />
+						<SideBarButton iconName={"bi-qr-code"} onClick={() => props.store.changePage(OG_PAGE_TYPE.QRcode)} />
+					</>
+				}
+				bottomChildren={
+					<>
+						<SideBarButton iconName={"bi-building"} onClick={() => props.store.changePage(OG_PAGE_TYPE.QRcode)} />
+						<SideBarButton iconName={"bi-box-arrow-in-left"} onClick={() => props.store.changePage(OG_PAGE_TYPE.QRcode)} />
+					</>
+				}
+			></SideBar>
 		</div>
 	);
 };

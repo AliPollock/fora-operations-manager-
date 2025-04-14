@@ -1,3 +1,4 @@
+import "./sideBarButton.scss";
 interface SideBarButtonProps {
 	iconName: string;
 	onClick: () => void;
@@ -6,7 +7,7 @@ interface SideBarButtonProps {
 export const SideBarButton = (props: SideBarButtonProps) => {
 	return (
 		<a className="og-sidebar-button" onClick={props.onClick}>
-			<i className="bi bi-house-door"></i>
+			<i className={"bi " + props.iconName}></i>
 		</a>
 	);
 };

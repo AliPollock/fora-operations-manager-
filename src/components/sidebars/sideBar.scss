@@ -1,0 +1,39 @@
+// This styling is ok for most desktop sizes but not perfect,
+// More work would need to be done by adding different classes at different sizes for mobile, tablet and to align items more perfectly for different cases
+.og-sidebar {
+	align-items: center;
+	height: 95%;
+	margin-top: 30%;
+	margin-bottom: 25%;
+}
+
+.og-sidebar-right {
+	width: 6%;
+	padding-right: 0%;
+	padding-left: 0%;
+	border-left: 3px solid #eeeeee;
+}
+
+.og-sidebar-left {
+	width: 6%;
+	padding-right: 0%;
+	padding-left: 0%;
+	border-right: 3px solid #eeeeee;
+}
+
+.og-fora-logo-sidebar {
+	height: 50%;
+	width: 45%;
+	margin-bottom: 15%;
+	margin-top: 15%;
+}
+
+.og-sidebar-top-children {
+	align-items: center;
+	width: 100%;
+}
+
+.og-sidebar-bottom-children {
+	align-items: center;
+	width: 100%;
+}

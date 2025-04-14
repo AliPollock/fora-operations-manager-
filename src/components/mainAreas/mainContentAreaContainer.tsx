@@ -1,26 +1,18 @@
 import { OperationsStore } from "@/stores/operationsStore";
-import { observer } from "mobx-react";
-import { useEffect } from "react";
-import { SideBarLeft } from "../sidebars/sideBarLeft";
-import { SideBarRight } from "../sidebars/sideBarRight";
+import { MainAreaTop } from "./mainAreaTop";
 import { MainContentArea } from "./mainContentArea";
-import "./mainAreas.scss";
 
 export interface MainContentAreaContainerProps {
 	store: OperationsStore;
 }
 
-export const MainContentAreaContainer = observer((props: MainContentAreaContainerProps) => {
-	useEffect(() => {
-		props.store.getLocations(); // Fetch locations when the component mounts
-	}, [props.store]);
-
-	console.log("rendering");
+export const MainContentAreaContainer = (props: MainContentAreaContainerProps) => {
+	props.store.locations?.map((location) => {
+		console.log("location: ", location.name, location.city, location.identifier);
+	});
 	return (
-		<div className="og-main-content-area-container row">
-			<SideBarLeft store={props.store} />
+		<div className="og-main-content-area-container col-10">
 			<MainContentArea store={props.store} />
-			<SideBarRight store={props.store} />
 		</div>
 	);
-});
+};

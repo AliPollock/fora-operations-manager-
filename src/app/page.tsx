@@ -1,6 +1,6 @@
 "use client";
+import { PortalContainer } from "@/components/mainAreas/portalContainer";
 import { OperationsStore } from "@/stores/operationsStore";
-import { MainContentAreaContainer } from "../components/mainAreas/mainContentAreaContainer";
 import Link from "next/link";
 
 export default function Home() {
@@ -11,7 +11,8 @@ export default function Home() {
 	return (
 		<div id={"app"}>
 			<main className="container-fluid">
-				<MainContentAreaContainer store={operationsStore} />
+				<PortalContainer store={operationsStore} />
+				{/* need to get rid of this and move the linking to the sidebar buttons */}
 				<Link href="/calendar">Calendar</Link>
 			</main>
 		</div>

@@ -3,6 +3,7 @@ import { OgLocationInterface } from "@/models/interfaces/ogLocationInterface";
 import { OgMaintainanceTicketInterface } from "@/models/interfaces/ogMaintainanceTicketInterface";
 import { OgMeetingRoomBookingInterface } from "@/models/interfaces/ogMeetingRoomBookingInterface";
 import { OgMeetingRoomInterface } from "@/models/interfaces/ogMeetingRoomInterface";
+import { OgMovesInterface } from "@/models/interfaces/ogMoves";
 import { OG_PAGE_TYPE } from "@/models/interfaces/ogPages";
 import { OgViewingInterface } from "@/models/interfaces/ogViewingInterface";
 import axios from "axios";
@@ -17,7 +18,7 @@ export interface OperationsStoreProps {
 }
 
 export class OperationsStore {
-	@observable locations?: OgLocationInterface[];
+	@observable locations: OgLocationInterface[] = [];
 
 	@observable viewings?: OgViewingInterface[] = [];
 
@@ -27,13 +28,26 @@ export class OperationsStore {
 
 	@observable roomBookings?: OgMeetingRoomBookingInterface[] = [];
 
+	@observable moveIns?: OgMovesInterface[] = [];
+
+	@observable moveOuts?: OgMovesInterface[] = [];
+
 	@observable page: OG_PAGE_TYPE = OG_PAGE_TYPE.Home;
 
 	@observable isRightSidebarOpen: boolean = false;
 
+	@observable currentLocation?: OgLocationInterface;
+
 	constructor(props: OgApiInterface) {
 		makeAutoObservable(this);
-		this.locations = props.locations;
+		if (props.locations) {
+			// just set a default here but would need to think about the error handling for no locations coming from the api and may need to trigger a direct to and erro page
+			this.locations = props.locations;
+			this.currentLocation = props.locations[0];
+		} else {
+			this.getLocations();
+			this.currentLocation = this.locations[0];
+		}
 		if (props.viewings) {
 			this.viewings = props.viewings;
 		}
@@ -72,4 +86,27 @@ export class OperationsStore {
 				});
 			});
 	}
+
+	@action getCurrentLocation = () => {
+		if (!this.currentLocation) {
+			this.currentLocation = this.locations[0];
+		}
+		return this.currentLocation;
+	};
+
+	getBookingsForCurrentLocation = (): OgMeetingRoomBookingInterface[] => {
+		return [];
+	};
+
+	getViewingsForCurrentLocation = (): OgViewingInterface[] => {
+		return [];
+	};
+
+	getMovesForCurrentLocation = (): OgMovesInterface[] => {
+		return [];
+	};
+
+	getMeetingRoomsForCurrentLocation = (): OgMeetingRoomInterface[] => {
+		return [];
+	};
 }

@@ -1,8 +1,21 @@
-.og-main-content-area-container {
+// This styling is approximate and very rough, would need refinement for certain sizes and cases
+// Large size does not look good and would need to be fixed
+.og-portal-container {
 	height: 100vh;
-	width: 100vw;
+	width: 103vw;
 	display: flex;
 	padding: 0px;
 	background-color: #f9f9f9;
 	color: #545f71;
+}
+
+.og-main-content-area-container {
+	padding-left: 8%;
+	padding-right: 8%;
+	padding-top: 3%;
+	padding-bottom: 3%;
+}
+
+.og-main-area-body {
+	margin-top: 5%;
 }
