@@ -11,7 +11,7 @@ const MEETING_ROOOMS: Record<string, OgMeetingRoomInterface> = {
 	"room_5bc1f5e2-aadc-4bc9-99dd-745dfea9d3f0": {
 		identifier: "room_5bc1f5e2-aadc-4bc9-99dd-745dfea9d3f0",
 		name: "Mayfair Board Room",
-		locationIdentifier: "loc_5ec3d1ab-7679-45eb-8db3-6edbba2e2bde",
+		locationIdentifier: "loc_cef77e0e-aa88-4b00-babd-3777d4cfb099",
 		capacity: 20,
 		hasConferenceScreen: true
 	},
@@ -74,70 +74,70 @@ const MEETING_ROOOMS: Record<string, OgMeetingRoomInterface> = {
 	"room_1a8b7d53-f22e-4fb6-92ce-d8a7b9c3f921": {
 		identifier: "room_1a8b7d53-f22e-4fb6-92ce-d8a7b9c3f921",
 		name: "Mayfair Conference Room A",
-		locationIdentifier: "loc_5ec3d1ab-7679-45eb-8db3-6edbba2e2bde",
+		locationIdentifier: "loc_cef77e0e-aa88-4b00-babd-3777d4cfb099",
 		capacity: 12,
 		hasConferenceScreen: true
 	},
 	"room_3c7b92e5-f23e-45a9-82b7-d6a8b9c7f5ef": {
 		identifier: "room_3c7b92e5-f23e-45a9-82b7-d6a8b9c7f5ef",
 		name: "Mayfair Collaboration Suite",
-		locationIdentifier: "loc_5ec3d1ab-7679-45eb-8db3-6edbba2e2bde",
+		locationIdentifier: "loc_cef77e0e-aa88-4b00-babd-3777d4cfb099",
 		capacity: 18,
 		hasConferenceScreen: false
 	},
 	"room_b9e3d5c8-f92e-4b6a-93d1-c7f8b92a5f35": {
 		identifier: "room_b9e3d5c8-f92e-4b6a-93d1-c7f8b92a5f35",
 		name: "Mayfair Boardroom B",
-		locationIdentifier: "loc_5ec3d1ab-7679-45eb-8db3-6edbba2e2bde",
+		locationIdentifier: "loc_cef77e0e-aa88-4b00-babd-3777d4cfb099",
 		capacity: 20,
 		hasConferenceScreen: true
 	},
 	"room_c3f5a92b-7d2e-4fb9-93ce-d8b7a92c6f5d": {
 		identifier: "room_c3f5a92b-7d2e-4fb9-93ce-d8b7a92c6f5d",
 		name: "Mayfair Discussion Hub",
-		locationIdentifier: "loc_5ec3d1ab-7679-45eb-8db3-6edbba2e2bde",
+		locationIdentifier: "loc_cef77e0e-aa88-4b00-babd-3777d4cfb099",
 		capacity: 16,
 		hasConferenceScreen: false
 	},
 	"room_7d3c5b92-f6a8-4fb2-92ce-b9a3d5f8b9e2": {
 		identifier: "room_7d3c5b92-f6a8-4fb2-92ce-b9a3d5f8b9e2",
 		name: "Mayfair Strategy Room A",
-		locationIdentifier: "loc_5ec3d1ab-7679-45eb-8db3-6edbba2e2bde",
+		locationIdentifier: "loc_cef77e0e-aa88-4b00-babd-3777d4cfb099",
 		capacity: 14,
 		hasConferenceScreen: true
 	},
 	"room_8c5d92f3-b7a2-45a9-92ce-d5f8b92c6a3e": {
 		identifier: "room_8c5d92f3-b7a2-45a9-92ce-d5f8b92c6a3e",
 		name: "Mayfair Creative Space",
-		locationIdentifier: "loc_5ec3d1ab-7679-45eb-8db3-6edbba2e2bde",
+		locationIdentifier: "loc_cef77e0e-aa88-4b00-babd-3777d4cfb099",
 		capacity: 10,
 		hasConferenceScreen: true
 	},
 	"room_f92c7a5e-b8a3-4d92-93ce-a7b3c5f9b6d2": {
 		identifier: "room_f92c7a5e-b8a3-4d92-93ce-a7b3c5f9b6d2",
 		name: "Mayfair Workshop Room",
-		locationIdentifier: "loc_5ec3d1ab-7679-45eb-8db3-6edbba2e2bde",
+		locationIdentifier: "loc_cef77e0e-aa88-4b00-babd-3777d4cfb099",
 		capacity: 22,
 		hasConferenceScreen: true
 	},
 	"room_d8b9a5f3-c5e7-4fb9-92a3-f6a7b5d3c92e": {
 		identifier: "room_d8b9a5f3-c5e7-4fb9-92a3-f6a7b5d3c92e",
 		name: "Mayfair Strategy Room B",
-		locationIdentifier: "loc_5ec3d1ab-7679-45eb-8db3-6edbba2e2bde",
+		locationIdentifier: "loc_cef77e0e-aa88-4b00-babd-3777d4cfb099",
 		capacity: 12,
 		hasConferenceScreen: true
 	},
 	"room_a5f3d92c-7e3b-4fb9-92ce-f6a8b9c3d52e": {
 		identifier: "room_a5f3d92c-7e3b-4fb9-92ce-f6a8b9c3d52e",
 		name: "Mayfair Executive Lounge",
-		locationIdentifier: "loc_5ec3d1ab-7679-45eb-8db3-6edbba2e2bde",
+		locationIdentifier: "loc_cef77e0e-aa88-4b00-babd-3777d4cfb099",
 		capacity: 8,
 		hasConferenceScreen: true
 	},
 	"room_c92b7f8a-5d3e-4fb1-92ce-d8a5b3c9f92e": {
 		identifier: "room_c92b7f8a-5d3e-4fb1-92ce-d8a5b3c9f92e",
 		name: "Mayfair Seminar Room",
-		locationIdentifier: "loc_5ec3d1ab-7679-45eb-8db3-6edbba2e2bde",
+		locationIdentifier: "loc_cef77e0e-aa88-4b00-babd-3777d4cfb099",
 		capacity: 30,
 		hasConferenceScreen: true
 	}

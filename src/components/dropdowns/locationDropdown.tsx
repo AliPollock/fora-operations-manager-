@@ -1,12 +1,13 @@
 import { OgLocationInterface } from "@/models/interfaces/ogLocationInterface";
 import "./locationDropdown.scss";
+import { observer } from "mobx-react";
 
 interface LocationDropdownProps {
 	locations: OgLocationInterface[];
 	currentLocation?: OgLocationInterface;
 }
 
-export const LocationDropdown = (props: LocationDropdownProps) => {
+export const LocationDropdown = observer((props: LocationDropdownProps) => {
 	return (
 		<div className="og-location-dropdown dropdown" style={{ position: "relative" }}>
 			<button className="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -24,4 +25,4 @@ export const LocationDropdown = (props: LocationDropdownProps) => {
 			</ul>
 		</div>
 	);
-};
+});

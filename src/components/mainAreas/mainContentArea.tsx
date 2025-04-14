@@ -8,9 +8,6 @@ export interface MainContentAreaProps {
 }
 
 export const MainContentArea = observer((props: MainContentAreaProps) => {
-	// props.store.locations?.map((location) => {
-	// 	console.log("location: ", location.name, location.city, location.identifier);
-	// });
 	return (
 		<div className="og-main-content-area row">
 			<MainAreaTop store={props.store} />

@@ -28,9 +28,9 @@ export class OperationsStore {
 
 	@observable roomBookings?: OgMeetingRoomBookingInterface[] = [];
 
-	@observable moveIns?: OgMovesInterface[] = [];
+	moveIns?: OgMovesInterface[] = [];
 
-	@observable moveOuts?: OgMovesInterface[] = [];
+	moveOuts?: OgMovesInterface[] = [];
 
 	@observable page: OG_PAGE_TYPE = OG_PAGE_TYPE.Home;
 
@@ -38,36 +38,22 @@ export class OperationsStore {
 
 	@observable currentLocation?: OgLocationInterface;
 
-	@observable availableBookings: OgMeetingRoomBookingInterface[] = [];
+	availableBookings: OgMeetingRoomBookingInterface[] = [];
 
 	constructor(props: OgApiInterface) {
 		makeAutoObservable(this);
-		if (props.locations) {
-			this.locations = props.locations;
-			this.currentLocation = this.locations[0];
-		}
-		if (props.viewings) {
-			this.viewings = props.viewings;
-		}
+		this.getLocations();
+	}
 
-		if (props.tickets) {
-			this.tickets = props.tickets;
-		}
-
-		if (props.meetingRooms) {
-			this.meetingRooms = props.meetingRooms;
-		}
-
-		if (props.roomBookings) {
-			this.roomBookings = props.roomBookings;
-		}
+	@action setCurrentLocation(location: OgLocationInterface) {
+		this.currentLocation = location;
 	}
 
 	@action changePage(page: OG_PAGE_TYPE) {
 		this.page = page;
 	}
 
-	getLocations() {
+	@action getLocations() {
 		axios
 			.get("/api/locations")
 			.then((response) => {
@@ -78,16 +64,18 @@ export class OperationsStore {
 				return [];
 			})
 			.then((locations) => {
-				console.log("success");
 				runInAction(() => {
-					this.locations = locations;
+					if (JSON.stringify(this.locations) !== JSON.stringify(locations)) {
+						this.locations = locations;
+					}
+					// console.log("locations from api: ", this.locations);
 				});
 			});
 	}
 
-	getMeetingRoomsForCurrentLocation(location: OgLocationInterface) {
+	@action getMeetingRoomsForLocation(location: OgLocationInterface) {
 		axios
-			.get("/api/locations[" + location.identifier + "]/meetingRooms")
+			.get("/api/locations/" + location.identifier + "/meetingRooms")
 			.then((response) => {
 				return response.data as OgMeetingRoomInterface[];
 			})
@@ -96,17 +84,19 @@ export class OperationsStore {
 				return [];
 			})
 			.then((meetingRooms) => {
-				console.log("success");
+				console.log("successfully got meeting rooms");
 				runInAction(() => {
-					this.meetingRooms = meetingRooms;
+					if (JSON.stringify(this.meetingRooms) !== JSON.stringify(meetingRooms)) {
+						this.meetingRooms = meetingRooms;
+					}
 				});
 			});
 	}
 
-	getBookingsForLocation(location: OgLocationInterface) {
+	@action getBookingsForLocation(location: OgLocationInterface) {
 		console.log("location: ", location.identifier, location.name, location.city);
 		axios
-			.get("/api/locations[" + location.identifier + "]/meetingRoomBookings")
+			.get("/api/locations/" + location.identifier + "/meetingRoomBookings")
 			.then((response) => {
 				return response.data as OgMeetingRoomBookingInterface[];
 			})
@@ -115,41 +105,56 @@ export class OperationsStore {
 				return [];
 			})
 			.then((meetingRoomBookings) => {
-				console.log("success");
+				console.log("successfully got bookings");
 				runInAction(() => {
-					this.roomBookings = meetingRoomBookings;
+					if (JSON.stringify(this.roomBookings) !== JSON.stringify(meetingRoomBookings)) {
+						this.roomBookings = meetingRoomBookings;
+					}
 				});
 			});
 	}
 
-	@action getCurrentLocation = () => {
-		if (!this.currentLocation) {
-			this.currentLocation = this.locations[0];
-		}
+	// this will be an api method that will return all the availability for a location
+	getAvailableBookingsForLocation(location: OgLocationInterface) {
+		return [];
+	}
+	// this will be an api method that will return all the move ins/outsfor a location
+	getMovesForLocation(location: OgLocationInterface) {
+		return [];
+	}
+
+	// this will be an api method that will return all the viewings for a location
+	getViewingsForLocation(location: OgLocationInterface) {
+		return [];
+	}
+
+	// this will be an api method that will return all the tickets for a location
+	getTicketsForLocation(location: OgLocationInterface) {
+		return [];
+	}
+
+	getCurrentLocation = () => {
 		return this.currentLocation;
 	};
 
 	getViewingsForCurrentLocation = (): OgViewingInterface[] => {
-		return [];
+		return this.viewings || [];
 	};
 
 	getMovesForCurrentLocation = (): OgMovesInterface[] => {
-		return [];
+		let moves = [...(this.moveIns || []), ...(this.moveOuts || [])];
+		return moves;
 	};
 
 	getBookingsForCurrentLocation = (): OgMeetingRoomBookingInterface[] => {
-		if (!this.currentLocation || !this.currentLocation.identifier) {
-			return [];
-		}
-		this.getBookingsForLocation(this.getCurrentLocation());
 		return this.roomBookings || [];
 	};
 
 	getAvailableBookingsForCurrentLocation = (): OgMeetingRoomBookingInterface[] => {
-		return [];
+		return this.availableBookings || [];
 	};
 
-	getRoomsForCurrentLocation = (): OgMeetingRoomInterface[] => {
-		return [];
+	getMeetingRoomsForCurrentLocation = (): OgMeetingRoomInterface[] => {
+		return this.meetingRooms || [];
 	};
 }
