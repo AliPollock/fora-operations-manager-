@@ -38,6 +38,8 @@ export class OperationsStore {
 
 	@observable currentLocation?: OgLocationInterface;
 
+	@observable availableBookings: OgMeetingRoomBookingInterface[] = [];
+
 	constructor(props: OgApiInterface) {
 		makeAutoObservable(this);
 		if (props.locations) {
@@ -107,6 +109,10 @@ export class OperationsStore {
 	};
 
 	getMeetingRoomsForCurrentLocation = (): OgMeetingRoomInterface[] => {
+		return [];
+	};
+
+	getAvailableBookingsForCurrentLocation = (): OgMeetingRoomBookingInterface[] => {
 		return [];
 	};
 }

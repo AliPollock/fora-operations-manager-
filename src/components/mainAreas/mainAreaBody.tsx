@@ -8,16 +8,16 @@ interface MainAreaBodyProps {
 	store: OperationsStore;
 }
 export const MainAreaBody = (props: MainAreaBodyProps) => {
-	let page = () => {
+	const page = () => {
 		switch (props.store.page) {
 			case OG_PAGE_TYPE.Home:
 				return <HomePageContents meetings={props.store.getBookingsForCurrentLocation()} viewings={props.store.getViewingsForCurrentLocation()} moves={props.store.getMovesForCurrentLocation()} />;
 			case OG_PAGE_TYPE.RoomBookings:
-				return <RoomBookingsContents meetings={props.store.getBookingsForCurrentLocation()} rooms={props.store.getMeetingRoomsForCurrentLocation()} />;
+				return <RoomBookingsContents availableBookings={props.store.getAvailableBookingsForCurrentLocation()} />;
 			case OG_PAGE_TYPE.QRcode:
-				return <>"I don't have a mockup for this page yet"</>;
+				return <p>{"I don't have a mockup for this page yet"}</p>;
 		}
 	};
 
-	return <div className="og-main-area-body row">{page()}</div>;
+	return <div className={"og-main-area-body row"}>{page()}</div>;
 };

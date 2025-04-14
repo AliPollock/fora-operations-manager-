@@ -1,5 +1,4 @@
 import { OperationsStore } from "@/stores/operationsStore";
-import { MainAreaTop } from "./mainAreaTop";
 import { MainContentArea } from "./mainContentArea";
 
 export interface MainContentAreaContainerProps {

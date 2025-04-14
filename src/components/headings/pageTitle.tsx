@@ -6,7 +6,7 @@ interface PageTitleProps {
 }
 
 export const PageTitle = (props: PageTitleProps) => {
-	let pageTitle = () => {
+	const pageTitle = () => {
 		switch (props.page) {
 			case OG_PAGE_TYPE.RoomBookings:
 				return "Meeting Room Bookings";
