@@ -105,21 +105,21 @@ export class OperationsStore {
 
 	getBookingsForLocation(location: OgLocationInterface) {
 		console.log("location: ", location.identifier, location.name, location.city);
-		// axios
-		// 	.get("/api/locations[" + location.identifier + "]/meetingRoomBookings")
-		// 	.then((response) => {
-		// 		return response.data as OgMeetingRoomBookingInterface[];
-		// 	})
-		// 	.catch((error) => {
-		// 		console.log("meeting room bookings error" + error);
-		// 		return [];
-		// 	})
-		// 	.then((meetingRoomBookings) => {
-		// 		console.log("success");
-		// 		runInAction(() => {
-		// 			this.roomBookings = meetingRoomBookings;
-		// 		});
-		// 	});
+		axios
+			.get("/api/locations[" + location.identifier + "]/meetingRoomBookings")
+			.then((response) => {
+				return response.data as OgMeetingRoomBookingInterface[];
+			})
+			.catch((error) => {
+				console.log("meeting room bookings error" + error);
+				return [];
+			})
+			.then((meetingRoomBookings) => {
+				console.log("success");
+				runInAction(() => {
+					this.roomBookings = meetingRoomBookings;
+				});
+			});
 	}
 
 	@action getCurrentLocation = () => {
@@ -146,6 +146,10 @@ export class OperationsStore {
 	};
 
 	getAvailableBookingsForCurrentLocation = (): OgMeetingRoomBookingInterface[] => {
+		return [];
+	};
+
+	getRoomsForCurrentLocation = (): OgMeetingRoomInterface[] => {
 		return [];
 	};
 }

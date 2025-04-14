@@ -12,7 +12,14 @@ export const MainAreaBody = observer((props: MainAreaBodyProps) => {
 	const page = () => {
 		switch (props.store.page) {
 			case OG_PAGE_TYPE.Home:
-				return <HomePageContents meetings={props.store.getBookingsForCurrentLocation()} viewings={props.store.getViewingsForCurrentLocation()} moves={props.store.getMovesForCurrentLocation()} />;
+				return (
+					<HomePageContents
+						meetings={props.store.getBookingsForCurrentLocation()}
+						viewings={props.store.getViewingsForCurrentLocation()}
+						moves={props.store.getMovesForCurrentLocation()}
+						rooms={props.store.getRoomsForCurrentLocation()}
+					/>
+				);
 			case OG_PAGE_TYPE.RoomBookings:
 				return <RoomBookingsContents availableBookings={props.store.getAvailableBookingsForCurrentLocation()} />;
 			case OG_PAGE_TYPE.QRcode:

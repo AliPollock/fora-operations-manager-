@@ -36,8 +36,18 @@ export const SideBarLeft = (props: SideBarLeftProps) => {
 				}
 				bottomChildren={
 					<>
-						<SideBarButton iconName={"bi-building"} onClick={() => props.store.changePage(OG_PAGE_TYPE.QRcode)} />
-						<SideBarButton iconName={"bi-box-arrow-in-left"} onClick={() => props.store.changePage(OG_PAGE_TYPE.QRcode)} />
+						<SideBarButton
+							iconName={"bi-building"}
+							onClick={() => {
+								console.log("action not yet defined");
+							}}
+						/>
+						<SideBarButton
+							iconName={"bi-box-arrow-in-left"}
+							onClick={() => {
+								console.log("action not yet defined");
+							}}
+						/>
 					</>
 				}
 			></SideBar>

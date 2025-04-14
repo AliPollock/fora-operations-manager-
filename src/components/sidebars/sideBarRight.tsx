@@ -13,8 +13,18 @@ export const SideBarRight = (props: SideBarRightProps) => {
 			<SideBar
 				topChildren={
 					<>
-						<SideBarButton iconName={"bi-bell"} onClick={() => {}} />
-						<SideBarButton iconName={"bi-tag"} onClick={() => {}} />
+						<SideBarButton
+							iconName={"bi-bell"}
+							onClick={() => {
+								console.log("this would slide out the side drawer");
+							}}
+						/>
+						<SideBarButton
+							iconName={"bi-tag"}
+							onClick={() => {
+								console.log("this would slide out the side drawer");
+							}}
+						/>
 					</>
 				}
 			/>

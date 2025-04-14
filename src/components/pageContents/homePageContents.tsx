@@ -2,11 +2,14 @@ import { OgMeetingRoomBookingInterface } from "@/models/interfaces/ogMeetingRoom
 import { OgMovesInterface } from "@/models/interfaces/ogMoves";
 import { OgViewingInterface } from "@/models/interfaces/ogViewingInterface";
 import { OgPageColumn } from "../pageSections/ogPageColumn";
+import { OgQRCard } from "../cards/ogQRCard";
+import { OgMeetingRoomInterface } from "@/models/interfaces/ogMeetingRoomInterface";
 
 interface HomePageContentsProps {
 	meetings: OgMeetingRoomBookingInterface[];
 	viewings: OgViewingInterface[];
 	moves: OgMovesInterface[];
+	rooms: OgMeetingRoomInterface[];
 }
 
 export const HomePageContents = (props: HomePageContentsProps) => {
@@ -15,7 +18,10 @@ export const HomePageContents = (props: HomePageContentsProps) => {
 			<div className="col-6">
 				<OgPageColumn title={"Meetings"}>
 					{props.meetings.map((meeting, index) => {
-						return <p key={index}>{"meeting cards to be put here" + meeting.identifier}</p>;
+						let meetingRoom = props.rooms.filter((room) => {
+							room.identifier === meeting.meetingRoomIdentifier;
+						})[0];
+						return <OgQRCard key={index} meeting={meeting} room={meetingRoom} />;
 					})}
 				</OgPageColumn>
 			</div>
