@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 export async function GET(request: Request, { params }: { params: Promise<{ locationId: string }> }) {
 	// list specific location: GET /locations/{locationId}
 	const { locationId } = await params;
-	console.log(`Fetching location with ID ${locationId}`);
+	// console.log(`Fetching location with ID ${locationId}`);
 
 	const location = await fetchLocationWithId(locationId);
 

@@ -1,17 +1,18 @@
 import { OperationsStore } from "@/stores/operationsStore";
 import { MainContentArea } from "./mainContentArea";
+import { observer } from "mobx-react";
 
 export interface MainContentAreaContainerProps {
 	store: OperationsStore;
 }
 
-export const MainContentAreaContainer = (props: MainContentAreaContainerProps) => {
-	props.store.locations?.map((location) => {
-		console.log("location: ", location.name, location.city, location.identifier);
-	});
+export const MainContentAreaContainer = observer((props: MainContentAreaContainerProps) => {
+	// props.store.locations?.map((location) => {
+	// 	console.log("location: ", location.name, location.city, location.identifier);
+	// });
 	return (
 		<div className="og-main-content-area-container col-10">
 			<MainContentArea store={props.store} />
 		</div>
 	);
-};
+});

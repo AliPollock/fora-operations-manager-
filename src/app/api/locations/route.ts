@@ -3,7 +3,7 @@ import { fetchLocations } from "../../../mockData/locations";
 
 export async function GET() {
 	// list specific location: GET /locations/{locationId}
-	console.log(`Fetching all locations`);
+	// console.log(`Fetching all locations`);
 
 	const locations = await fetchLocations();
 

@@ -1,11 +1,12 @@
 import { OperationsStore } from "@/stores/operationsStore";
 import { LocationDropdown } from "../dropdowns/locationDropdown";
 import { PageTitle } from "../headings/pageTitle";
+import { observer } from "mobx-react";
 
 interface MainAreaTopProps {
 	store: OperationsStore;
 }
-export const MainAreaTop = (props: MainAreaTopProps) => {
+export const MainAreaTop = observer((props: MainAreaTopProps) => {
 	return (
 		<div className="og-main-area-top row">
 			<div className="og-main-area-title col-6">
@@ -16,4 +17,4 @@ export const MainAreaTop = (props: MainAreaTopProps) => {
 			</div>
 		</div>
 	);
-};
+});

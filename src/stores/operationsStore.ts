@@ -43,11 +43,7 @@ export class OperationsStore {
 	constructor(props: OgApiInterface) {
 		makeAutoObservable(this);
 		if (props.locations) {
-			// just set a default here but would need to think about the error handling for no locations coming from the api and may need to trigger a direct to and erro page
 			this.locations = props.locations;
-			this.currentLocation = props.locations[0];
-		} else {
-			this.getLocations();
 			this.currentLocation = this.locations[0];
 		}
 		if (props.viewings) {
@@ -74,11 +70,11 @@ export class OperationsStore {
 	getLocations() {
 		axios
 			.get("/api/locations")
-			.then((reponse) => {
-				return reponse.data as OgLocationInterface[];
+			.then((response) => {
+				return response.data as OgLocationInterface[];
 			})
 			.catch((error) => {
-				console.log(error);
+				console.log("locations error" + error);
 				return [];
 			})
 			.then((locations) => {
@@ -89,15 +85,48 @@ export class OperationsStore {
 			});
 	}
 
+	getMeetingRoomsForCurrentLocation(location: OgLocationInterface) {
+		axios
+			.get("/api/locations[" + location.identifier + "]/meetingRooms")
+			.then((response) => {
+				return response.data as OgMeetingRoomInterface[];
+			})
+			.catch((error) => {
+				console.log("meeting rooms error" + error);
+				return [];
+			})
+			.then((meetingRooms) => {
+				console.log("success");
+				runInAction(() => {
+					this.meetingRooms = meetingRooms;
+				});
+			});
+	}
+
+	getBookingsForLocation(location: OgLocationInterface) {
+		console.log("location: ", location.identifier, location.name, location.city);
+		// axios
+		// 	.get("/api/locations[" + location.identifier + "]/meetingRoomBookings")
+		// 	.then((response) => {
+		// 		return response.data as OgMeetingRoomBookingInterface[];
+		// 	})
+		// 	.catch((error) => {
+		// 		console.log("meeting room bookings error" + error);
+		// 		return [];
+		// 	})
+		// 	.then((meetingRoomBookings) => {
+		// 		console.log("success");
+		// 		runInAction(() => {
+		// 			this.roomBookings = meetingRoomBookings;
+		// 		});
+		// 	});
+	}
+
 	@action getCurrentLocation = () => {
 		if (!this.currentLocation) {
 			this.currentLocation = this.locations[0];
 		}
 		return this.currentLocation;
-	};
-
-	getBookingsForCurrentLocation = (): OgMeetingRoomBookingInterface[] => {
-		return [];
 	};
 
 	getViewingsForCurrentLocation = (): OgViewingInterface[] => {
@@ -108,8 +137,12 @@ export class OperationsStore {
 		return [];
 	};
 
-	getMeetingRoomsForCurrentLocation = (): OgMeetingRoomInterface[] => {
-		return [];
+	getBookingsForCurrentLocation = (): OgMeetingRoomBookingInterface[] => {
+		if (!this.currentLocation || !this.currentLocation.identifier) {
+			return [];
+		}
+		this.getBookingsForLocation(this.getCurrentLocation());
+		return this.roomBookings || [];
 	};
 
 	getAvailableBookingsForCurrentLocation = (): OgMeetingRoomBookingInterface[] => {

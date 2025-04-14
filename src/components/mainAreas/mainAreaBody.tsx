@@ -3,11 +3,12 @@ import { OperationsStore } from "@/stores/operationsStore";
 import { HomePageContents } from "../pageContents/homePageContents";
 import { RoomBookingsContents } from "../pageContents/roomBookingsContents";
 import "./mainAreas.scss";
+import { observer } from "mobx-react";
 
 interface MainAreaBodyProps {
 	store: OperationsStore;
 }
-export const MainAreaBody = (props: MainAreaBodyProps) => {
+export const MainAreaBody = observer((props: MainAreaBodyProps) => {
 	const page = () => {
 		switch (props.store.page) {
 			case OG_PAGE_TYPE.Home:
@@ -20,4 +21,4 @@ export const MainAreaBody = (props: MainAreaBodyProps) => {
 	};
 
 	return <div className={"og-main-area-body row"}>{page()}</div>;
-};
+});
