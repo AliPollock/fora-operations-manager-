@@ -12,7 +12,7 @@ export interface PortalContainerProps {
 }
 
 export const PortalContainer = observer((props: PortalContainerProps) => {
-	// some state for loading state
+	// some logic for loading state
 	const [loading, setLoading] = useState(true);
 	// Set the current location to the first one in the list initially, in production we could have client or server storage for this default
 	useEffect(() => {
@@ -37,8 +37,9 @@ export const PortalContainer = observer((props: PortalContainerProps) => {
 				console.log("QR code page selected");
 			}
 		}
-	}, [props.store.locations, props.store.currentLocation, props.store.page]);
+	}, [props.store.currentLocation, props.store.page]);
 
+	// extremely ugly loading screen for whilst the API calls take place and populate the initial data in the store
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			setLoading(false); // Stop loading after timer
@@ -55,8 +56,9 @@ export const PortalContainer = observer((props: PortalContainerProps) => {
 		);
 	}
 
-	// To fix the styling on the side bars for large and small images, I would probably not want these to exist as columns,
-	//  but as independant divs that are floating on top of the main area
+	// To fix the styling on the side bars for large and small images, I would not want these to exist as columns,
+	//  but as independant divs that are floating on top of the main area, having them as columns was a bit of a hack to get the layout to work quickly
+	//  but it is not the best solution. I would also want to add some sort of animation to the loading screen and the transition between location changes.
 	return (
 		<div className="og-portal-container row g-0">
 			<SideBarLeft store={props.store} />

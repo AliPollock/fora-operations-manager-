@@ -102,7 +102,6 @@ export class OperationsStore {
 			})
 			.then((meetingRoomBookings) => {
 				runInAction(() => {
-					console.log("successfully got bookings " + meetingRoomBookings);
 					// should add a check to see if the meeting rooms have changed before setting them
 					this.roomBookings = meetingRoomBookings;
 				});
@@ -121,7 +120,6 @@ export class OperationsStore {
 				return [];
 			})
 			.then((viewings) => {
-				console.log("successfully got viewings " + viewings);
 				runInAction(() => {
 					// should add a check to see if the meeting rooms have changed before setting them
 					this.viewings = viewings;

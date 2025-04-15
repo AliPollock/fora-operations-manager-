@@ -2,18 +2,25 @@
 	height: 100%;
 
 	.og-page-column {
-		min-height: 25%;
+		min-height: 45%;
 		padding-right: 2%;
 		padding-left: 2%;
 	}
 
 	.og-viewings-page-column {
-		max-height: 28.4%;
-		min-height: 28.4%;
+		p {
+			padding-left: 5%;
+			font-size: 1rem;
+		}
 	}
 
 	.og-move-page-column {
-		max-height: 25%;
+		max-height: 55%;
+
+		p {
+			padding-left: 5%;
+			font-size: 1rem;
+		}
 	}
 }
 
@@ -22,7 +29,12 @@
 	padding-left: 2%;
 
 	.og-meetings-page-column {
-		max-height: 50%;
+		max-height: 80%;
+
+		p {
+			padding-left: 5%;
+			font-size: 1rem;
+		}
 	}
 }
 

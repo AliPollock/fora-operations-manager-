@@ -1,7 +1,6 @@
 import { OgLocationInterface } from "@/models/interfaces/ogLocationInterface";
 import "./locationDropdown.scss";
 import { observer } from "mobx-react";
-import { useEffect, useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import { OperationsStore } from "@/stores/operationsStore";
 
