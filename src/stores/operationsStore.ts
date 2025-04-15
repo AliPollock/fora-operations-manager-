@@ -86,9 +86,8 @@ export class OperationsStore {
 			.then((meetingRooms) => {
 				console.log("successfully got meeting rooms");
 				runInAction(() => {
-					if (JSON.stringify(this.meetingRooms) !== JSON.stringify(meetingRooms)) {
-						this.meetingRooms = meetingRooms;
-					}
+					this.meetingRooms = meetingRooms;
+					console.log("changed meeting rooms");
 				});
 			});
 	}
@@ -107,9 +106,7 @@ export class OperationsStore {
 			.then((meetingRoomBookings) => {
 				console.log("successfully got bookings");
 				runInAction(() => {
-					if (JSON.stringify(this.roomBookings) !== JSON.stringify(meetingRoomBookings)) {
-						this.roomBookings = meetingRoomBookings;
-					}
+					this.roomBookings = meetingRoomBookings;
 				});
 			});
 	}

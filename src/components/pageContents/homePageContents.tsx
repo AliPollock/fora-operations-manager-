@@ -17,9 +17,7 @@ export const HomePageContents = observer((props: HomePageContentsProps) => {
 			<div className="col-6">
 				<OgPageColumn title={"Meetings"}>
 					{props.store.getBookingsForCurrentLocation().map((booking, index) => {
-						const meetingRoom = props.store.getMeetingRoomsForCurrentLocation().filter((room) => {
-							room.identifier === booking.meetingRoomIdentifier;
-						})[0];
+						const meetingRoom = props.store.getMeetingRoomsForCurrentLocation().filter((room) => room.identifier === booking.meetingRoomIdentifier)[0];
 						console.log("meeting room", meetingRoom);
 						return <div key={index}>{meetingRoom ? <OgQRCard booking={booking} room={meetingRoom} /> : null}</div>;
 					})}
