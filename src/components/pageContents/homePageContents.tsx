@@ -1,13 +1,10 @@
-import { OgMeetingRoomBookingInterface } from "@/models/interfaces/ogMeetingRoomBookingInterface";
-import { OgMovesInterface } from "@/models/interfaces/ogMoves";
-import { OgViewingInterface } from "@/models/interfaces/ogViewingInterface";
 import { OgPageColumn } from "../pageSections/ogPageColumn";
-import { OgMeetingRoomInterface } from "@/models/interfaces/ogMeetingRoomInterface";
 import { OgQRCard } from "../cards/ogQRCard";
 import { observer } from "mobx-react";
 import { OperationsStore } from "@/stores/operationsStore";
 import { OgViewingCard } from "../cards/ogViewingCard";
 import "./homePageContents.scss";
+import { OgMoveCard } from "../cards/ogMovesCard";
 
 interface HomePageContentsProps {
 	store: OperationsStore;
@@ -34,7 +31,7 @@ export const HomePageContents = observer((props: HomePageContentsProps) => {
 				</OgPageColumn>
 				<OgPageColumn title="Move in/out">
 					{props.store.getMovesForCurrentLocation().map((move, index) => {
-						return <p key={index}>{"move cards to be put here" + move.identifier}</p>;
+						return <OgMoveCard key={index} move={move} />;
 					})}
 				</OgPageColumn>
 			</div>

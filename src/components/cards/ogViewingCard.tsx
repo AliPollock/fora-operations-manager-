@@ -7,7 +7,8 @@ import "./ogColumnCard.scss";
 export interface OgViewingCardInterface {
 	viewing: OgViewingInterface;
 }
-
+// I'm not sure which other property the mockup wants for the viewings
+// I chose to just interpret this as a viewing of the whole property
 export const OgViewingCard = (props: OgViewingCardInterface) => {
 	const startDateDisplayString = getDateFromTimeDateIsoString(props.viewing.startDateTimeString);
 	const startTimeDisplayString = getTwentyFourHourTimeFromTimeDateIsoString(props.viewing.startDateTimeString);

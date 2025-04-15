@@ -1,4 +1,4 @@
-export interface OgMovesInterface {
+export interface OgMoveInterface {
 	identifier: string;
 	locationIdentifier: string;
 	companyName: string;

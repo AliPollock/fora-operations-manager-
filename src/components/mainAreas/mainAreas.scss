@@ -8,9 +8,15 @@
 	padding: 0px;
 	background-color: #e2e4e6fc;
 	color: #545f71;
+	overflow: hidden;
 }
 
+// There is a styling issue here with children a few levels down being cut off, I would need to use some logic like I did in the columns
+// to hide children of children if they are not completely in the viewable area, or perhaps make the whole area scrollable
 .og-main-content-area-container {
+	overflow: hidden;
+	max-height: 90vh;
+	display: flex;
 	padding-left: 8%;
 	padding-right: 8%;
 	padding-top: 3%;

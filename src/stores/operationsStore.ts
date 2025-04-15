@@ -3,7 +3,7 @@ import { OgLocationInterface } from "@/models/interfaces/ogLocationInterface";
 import { OgMaintainanceTicketInterface } from "@/models/interfaces/ogMaintainanceTicketInterface";
 import { OgMeetingRoomBookingInterface } from "@/models/interfaces/ogMeetingRoomBookingInterface";
 import { OgMeetingRoomInterface } from "@/models/interfaces/ogMeetingRoomInterface";
-import { OgMovesInterface } from "@/models/interfaces/ogMoves";
+import { OgMoveInterface } from "@/models/interfaces/ogMoveInterface";
 import { OG_PAGE_TYPE } from "@/models/interfaces/ogPages";
 import { OgViewingInterface } from "@/models/interfaces/ogViewingInterface";
 import axios from "axios";
@@ -28,9 +28,9 @@ export class OperationsStore {
 
 	@observable roomBookings?: OgMeetingRoomBookingInterface[] = [];
 
-	moveIns?: OgMovesInterface[] = [];
+	@observable moveIns?: OgMoveInterface[] = [];
 
-	moveOuts?: OgMovesInterface[] = [];
+	@observable moveOuts?: OgMoveInterface[] = [];
 
 	@observable page: OG_PAGE_TYPE = OG_PAGE_TYPE.Home;
 
@@ -126,12 +126,31 @@ export class OperationsStore {
 			});
 	}
 
+	// this will be an api method that will return all the move ins/outsfor a location
+	@action getMovesForLocation(location: OgLocationInterface) {
+		axios
+			.get("/api/locations/" + location.identifier + "/moves")
+			.then((response) => {
+				return response.data as OgMoveInterface[];
+			})
+			.catch((error) => {
+				console.log("moves error" + error);
+				return [];
+			})
+			.then((moves) => {
+				console.log("successfully got viewings");
+				runInAction(() => {
+					let moveOuts = moves.filter((move) => move.isCurrentlyResident);
+					this.moveOuts = moveOuts;
+
+					let moveIns = moves.filter((move) => !move.isCurrentlyResident);
+					this.moveIns = moveIns;
+				});
+			});
+	}
+
 	// this will be an api method that will return all the availability for a location
 	getAvailableBookingsForLocation(location: OgLocationInterface) {
-		return [];
-	}
-	// this will be an api method that will return all the move ins/outsfor a location
-	getMovesForLocation(location: OgLocationInterface) {
 		return [];
 	}
 
@@ -148,7 +167,7 @@ export class OperationsStore {
 		return this.viewings || [];
 	};
 
-	getMovesForCurrentLocation = (): OgMovesInterface[] => {
+	getMovesForCurrentLocation = (): OgMoveInterface[] => {
 		let moves = [...(this.moveIns || []), ...(this.moveOuts || [])];
 		return moves;
 	};
