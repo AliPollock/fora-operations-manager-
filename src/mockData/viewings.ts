@@ -73,42 +73,42 @@ const VIEWINGS: Record<string, OgViewingInterface> = {
 	},
 	viewing_11_cef77e0e: {
 		identifier: "viewing_11_cef77e0e",
-		locationIdentifier: "loc_cef77e0e-aa88-4b00-babd-3777d4cfb099",
+		locationIdentifier: "loc_d3b7421d-a4f6-4054-9376-efc10b20ddc6",
 		companyName: "TechCorp",
 		startDateTimeString: "2022-09-27 08:00:00.000",
 		endDateTimeString: "2022-09-27 09:00:00.000"
 	},
 	viewing_12_cef77e0e: {
 		identifier: "viewing_12_cef77e0e",
-		locationIdentifier: "loc_cef77e0e-aa88-4b00-babd-3777d4cfb099",
+		locationIdentifier: "loc_d3b7421d-a4f6-4054-9376-efc10b20ddc6",
 		companyName: "BizInc",
 		startDateTimeString: "2022-09-27 09:15:00.000",
 		endDateTimeString: "2022-09-27 10:15:00.000"
 	},
 	viewing_13_cef77e0e: {
 		identifier: "viewing_13_cef77e0e",
-		locationIdentifier: "loc_cef77e0e-aa88-4b00-babd-3777d4cfb099",
+		locationIdentifier: "loc_d3b7421d-a4f6-4054-9376-efc10b20ddc6",
 		companyName: "Innovate Ltd",
 		startDateTimeString: "2022-09-27 10:30:00.000",
 		endDateTimeString: "2022-09-27 11:30:00.000"
 	},
 	viewing_14_cef77e0e: {
 		identifier: "viewing_14_cef77e0e",
-		locationIdentifier: "loc_cef77e0e-aa88-4b00-babd-3777d4cfb099",
+		locationIdentifier: "loc_f23a91e6-4ff1-4b93-836f-8af003c8b301",
 		companyName: "Alpha Solutions",
 		startDateTimeString: "2022-09-27 11:45:00.000",
 		endDateTimeString: "2022-09-27 12:45:00.000"
 	},
 	viewing_15_cef77e0e: {
 		identifier: "viewing_15_cef77e0e",
-		locationIdentifier: "loc_cef77e0e-aa88-4b00-babd-3777d4cfb099",
+		locationIdentifier: "loc_f23a91e6-4ff1-4b93-836f-8af003c8b301",
 		companyName: "NextGen",
 		startDateTimeString: "2022-09-27 13:00:00.000",
 		endDateTimeString: "2022-09-27 14:00:00.000"
 	},
 	viewing_16_cef77e0e: {
 		identifier: "viewing_16_cef77e0e",
-		locationIdentifier: "loc_cef77e0e-aa88-4b00-babd-3777d4cfb099",
+		locationIdentifier: "loc_f23a91e6-4ff1-4b93-836f-8af003c8b301",
 		companyName: "FutureWorks",
 		startDateTimeString: "2022-09-27 14:15:00.000",
 		endDateTimeString: "2022-09-27 15:15:00.000"
@@ -145,10 +145,6 @@ const VIEWINGS: Record<string, OgViewingInterface> = {
 
 export async function fetchViewingsForLocation(locationId: string): Promise<OgViewingInterface[]> {
 	const viewings = Object.values(VIEWINGS).filter((viewing) => viewing.locationIdentifier === locationId);
-
-	if (viewings.length === 0) {
-		return Promise.reject(new Error(`No viewings found for location ID: ${locationId}`));
-	}
 
 	return viewings;
 }

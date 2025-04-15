@@ -1,6 +1,6 @@
 import { OperationsStore } from "@/stores/operationsStore";
 import { observer } from "mobx-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { SideBarLeft } from "../sidebars/sideBarLeft";
 import { SideBarRight } from "../sidebars/sideBarRight";
 import "./mainAreas.scss";
@@ -12,6 +12,8 @@ export interface PortalContainerProps {
 }
 
 export const PortalContainer = observer((props: PortalContainerProps) => {
+	// some state for loading state
+	const [loading, setLoading] = useState(true);
 	// Set the current location to the first one in the list initially, in production we could have client or server storage for this default
 	useEffect(() => {
 		if (props.store.locations.length !== 0) {
@@ -36,6 +38,22 @@ export const PortalContainer = observer((props: PortalContainerProps) => {
 			}
 		}
 	}, [props.store.locations, props.store.currentLocation, props.store.page]);
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setLoading(false); // Stop loading after timer
+		}, 1000);
+
+		return () => clearTimeout(timer);
+	}, []);
+
+	if (loading) {
+		return (
+			<div className="loading-screen">
+				<h1>Loading...</h1>
+			</div>
+		);
+	}
 
 	// To fix the styling on the side bars for large and small images, I would probably not want these to exist as columns,
 	//  but as independant divs that are floating on top of the main area

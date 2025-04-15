@@ -74,7 +74,7 @@ export class OperationsStore {
 
 	@action getMeetingRoomsForLocation(location: OgLocationInterface) {
 		axios
-			.get("/api/locations/" + location.identifier + "/meetingRooms")
+			.get("/api/locations/" + location.identifier + "/meeting-rooms")
 			.then((response) => {
 				return response.data as OgMeetingRoomInterface[];
 			})
@@ -92,7 +92,7 @@ export class OperationsStore {
 
 	@action getBookingsForLocation(location: OgLocationInterface) {
 		axios
-			.get("/api/locations/" + location.identifier + "/meetingRoomBookings")
+			.get("/api/locations/" + location.identifier + "/meeting-room-bookings")
 			.then((response) => {
 				return response.data as OgMeetingRoomBookingInterface[];
 			})
@@ -102,6 +102,7 @@ export class OperationsStore {
 			})
 			.then((meetingRoomBookings) => {
 				runInAction(() => {
+					console.log("successfully got bookings " + meetingRoomBookings);
 					// should add a check to see if the meeting rooms have changed before setting them
 					this.roomBookings = meetingRoomBookings;
 				});
@@ -120,7 +121,7 @@ export class OperationsStore {
 				return [];
 			})
 			.then((viewings) => {
-				console.log("successfully got viewings");
+				console.log("successfully got viewings " + viewings);
 				runInAction(() => {
 					// should add a check to see if the meeting rooms have changed before setting them
 					this.viewings = viewings;
@@ -140,7 +141,7 @@ export class OperationsStore {
 				return [];
 			})
 			.then((moves) => {
-				console.log("successfully got viewings");
+				console.log("successfully got moves");
 				runInAction(() => {
 					let moveOuts = moves.filter((move) => move.isCurrentlyResident);
 					this.moveOuts = moveOuts;

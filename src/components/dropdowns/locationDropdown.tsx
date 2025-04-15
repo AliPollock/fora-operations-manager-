@@ -14,7 +14,7 @@ export const LocationDropdown = observer((props: LocationDropdownProps) => {
 	let locationName = currentLocation?.name || "Select a location";
 
 	const handleSelect = (location: OgLocationInterface) => {
-		props.store.currentLocation = location;
+		props.store.setCurrentLocation(location);
 	};
 
 	return (

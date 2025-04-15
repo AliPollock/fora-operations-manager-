@@ -13,7 +13,6 @@ export const OgPageColumn = observer((props: OgPageColumnProps) => {
 
 	// This effect is used to hide any children from being partially cut off inside the column
 	useLayoutEffect(() => {
-		console.log("useLayoutEffect running");
 		if (parentRef.current) {
 			const parentRect = parentRef.current.getBoundingClientRect();
 

@@ -157,7 +157,7 @@ const MEETING_ROOM_BOOKINGS: Record<string, OgMeetingRoomBookingInterface> = {
 	"booking_c7e9b1f2-3f5e-4db9-a926-d8f3a9b2f7c5": {
 		identifier: "booking_c7e9b1f2-3f5e-4db9-a926-d8f3a9b2f7c5",
 		meetingRoomIdentifier: "room_aaf34434-827c-4f1c-bdf7-2319bb8b3c7a",
-		locationIdentifier: "loc_cef77e0e-aa88-4b00-babd-3777d4cfb099",
+		locationIdentifier: "loc_f23a91e6-4ff1-4b93-836f-8af003c8b301",
 		startDateTimeString: "2022-09-28 10:00:00.000",
 		endDateTimeString: "2022-09-28 13:00:00.000",
 		companyName: "Delta Solutions",
@@ -166,7 +166,7 @@ const MEETING_ROOM_BOOKINGS: Record<string, OgMeetingRoomBookingInterface> = {
 	"booking_b2a9f8c7-3f6e-4db1-b926-d7e3c9a5f3b8": {
 		identifier: "booking_b2a9f8c7-3f6e-4db1-b926-d7e3c9a5f3b8",
 		meetingRoomIdentifier: "room_a9c74de3-b0ac-49cf-b811-9248e9c4b64f",
-		locationIdentifier: "loc_cef77e0e-aa88-4b00-babd-3777d4cfb099",
+		locationIdentifier: "loc_f23a91e6-4ff1-4b93-836f-8af003c8b301",
 		startDateTimeString: "2022-09-28 08:30:00.000",
 		endDateTimeString: "2022-09-28 11:30:00.000",
 		companyName: "Epsilon Corp",
@@ -175,7 +175,7 @@ const MEETING_ROOM_BOOKINGS: Record<string, OgMeetingRoomBookingInterface> = {
 	"booking_1d7f5a92-c3b6-4fb9-a926-d7f8b5c9a3f9": {
 		identifier: "booking_1d7f5a92-c3b6-4fb9-a926-d7f8b5c9a3f9",
 		meetingRoomIdentifier: "room_1a8b7d53-f22e-4fb6-92ce-d8a7b9c3f921",
-		locationIdentifier: "loc_cef77e0e-aa88-4b00-babd-3777d4cfb099",
+		locationIdentifier: "loc_f23a91e6-4ff1-4b93-836f-8af003c8b301",
 		startDateTimeString: "2022-09-29 09:00:00.000",
 		endDateTimeString: "2022-09-29 12:00:00.000",
 		companyName: "Synergy Corp",
@@ -257,10 +257,6 @@ const MEETING_ROOM_BOOKINGS: Record<string, OgMeetingRoomBookingInterface> = {
 
 export async function fetchMeetingRoomBookingsForLocation(locationId: string): Promise<OgMeetingRoomBookingInterface[]> {
 	const meetingRoomBookings = Object.values(MEETING_ROOM_BOOKINGS).filter((booking) => booking.locationIdentifier === locationId);
-
-	if (meetingRoomBookings.length === 0) {
-		return Promise.reject(new Error("No meeting room bookings found for the specified location."));
-	}
 
 	return Promise.resolve(meetingRoomBookings);
 }

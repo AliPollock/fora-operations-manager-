@@ -84,9 +84,5 @@ const MOVES: Record<string, OgMoveInterface> = {
 export async function fetchMovesForLocation(locationId: string): Promise<OgMoveInterface[]> {
 	const moves = Object.values(MOVES).filter((move) => move.locationIdentifier === locationId);
 
-	if (moves.length === 0) {
-		return Promise.reject(new Error("No moves found for this location."));
-	}
-
 	return Promise.resolve(moves);
 }
