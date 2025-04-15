@@ -1,28 +1,33 @@
 import { OgLocationInterface } from "@/models/interfaces/ogLocationInterface";
 import "./locationDropdown.scss";
 import { observer } from "mobx-react";
+import { useEffect, useState } from "react";
+import { Dropdown } from "react-bootstrap";
+import { OperationsStore } from "@/stores/operationsStore";
 
 interface LocationDropdownProps {
-	locations: OgLocationInterface[];
-	currentLocation?: OgLocationInterface;
+	store: OperationsStore;
 }
 
 export const LocationDropdown = observer((props: LocationDropdownProps) => {
-	return (
-		<div className="og-location-dropdown dropdown" style={{ position: "relative" }}>
-			<button className="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-				{props.currentLocation ? props.currentLocation.name : "Select a location"}
-			</button>
+	let currentLocation = props.store.getCurrentLocation();
+	let locationName = currentLocation?.name || "Select a location";
 
-			<ul className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{ borderRadius: "8px" }}>
-				{props.locations.map((location) => (
-					<li key={location.identifier}>
-						<button className="dropdown-item" onClick={() => console.log("Selected:", location)}>
-							{location.name} ({location.city})
-						</button>
-					</li>
+	const handleSelect = (location: OgLocationInterface) => {
+		props.store.currentLocation = location;
+	};
+
+	return (
+		<Dropdown>
+			<Dropdown.Toggle className="og-location-dropdown">{locationName}</Dropdown.Toggle>
+
+			<Dropdown.Menu className="og-location-dropdown-menu">
+				{props.store.locations.map((location) => (
+					<Dropdown.Item key={location.identifier} onClick={() => handleSelect(location)}>
+						{location.name} ({location.city})
+					</Dropdown.Item>
 				))}
-			</ul>
-		</div>
+			</Dropdown.Menu>
+		</Dropdown>
 	);
 });

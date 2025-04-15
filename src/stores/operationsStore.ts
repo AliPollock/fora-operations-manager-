@@ -68,7 +68,6 @@ export class OperationsStore {
 					if (JSON.stringify(this.locations) !== JSON.stringify(locations)) {
 						this.locations = locations;
 					}
-					// console.log("locations from api: ", this.locations);
 				});
 			});
 	}
@@ -85,6 +84,7 @@ export class OperationsStore {
 			})
 			.then((meetingRooms) => {
 				runInAction(() => {
+					// should add a check to see if the meeting rooms have changed before setting them
 					this.meetingRooms = meetingRooms;
 				});
 			});
@@ -102,6 +102,7 @@ export class OperationsStore {
 			})
 			.then((meetingRoomBookings) => {
 				runInAction(() => {
+					// should add a check to see if the meeting rooms have changed before setting them
 					this.roomBookings = meetingRoomBookings;
 				});
 			});
@@ -121,6 +122,7 @@ export class OperationsStore {
 			.then((viewings) => {
 				console.log("successfully got viewings");
 				runInAction(() => {
+					// should add a check to see if the meeting rooms have changed before setting them
 					this.viewings = viewings;
 				});
 			});

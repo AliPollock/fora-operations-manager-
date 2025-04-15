@@ -16,15 +16,11 @@
 .og-main-content-area-container {
 	overflow: hidden;
 	max-height: 90vh;
-	display: flex;
 	padding-left: 8%;
 	padding-right: 8%;
 	padding-top: 3%;
 	padding-bottom: 3%;
-}
-
-.og-main-area-body {
-	margin-top: 3%;
+	width: 84%;
 }
 
 .og-main-area-location-select {

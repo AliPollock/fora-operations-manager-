@@ -16,7 +16,7 @@ export const HomePageContents = observer((props: HomePageContentsProps) => {
 	return (
 		<div className="og-home-page-contents row">
 			<div className="og-meetings-column col-6">
-				<OgPageColumn title={"Meetings"}>
+				<OgPageColumn className={"og-meetings-page-column"} title={"Meetings"}>
 					{props.store.getBookingsForCurrentLocation().map((booking, index) => {
 						const meetingRoom = props.store.getMeetingRoomsForCurrentLocation().filter((room) => room.identifier === booking.meetingRoomIdentifier)[0];
 						return <div key={index}>{meetingRoom ? <OgQRCard booking={booking} room={meetingRoom} /> : null}</div>;
@@ -24,12 +24,12 @@ export const HomePageContents = observer((props: HomePageContentsProps) => {
 				</OgPageColumn>
 			</div>
 			<div className="og-viewing-move-column col-6">
-				<OgPageColumn title="Viewings">
+				<OgPageColumn className={"og-viewings-page-column"} title="Viewings">
 					{props.store.getViewingsForCurrentLocation().map((viewing, index) => {
 						return <OgViewingCard key={index} viewing={viewing} />;
 					})}
 				</OgPageColumn>
-				<OgPageColumn title="Move in/out">
+				<OgPageColumn className={"og-move-page-column"} title="Move in/out">
 					{props.store.getMovesForCurrentLocation().map((move, index) => {
 						return <OgMoveCard key={index} move={move} />;
 					})}

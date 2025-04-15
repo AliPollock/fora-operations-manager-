@@ -13,7 +13,7 @@ export const MainAreaTop = observer((props: MainAreaTopProps) => {
 				<PageTitle page={props.store.page} />
 			</div>
 			<div className="og-main-area-location-select col-6">
-				<LocationDropdown locations={props.store.locations} currentLocation={props.store.getCurrentLocation()} />
+				<LocationDropdown store={props.store} />
 			</div>
 		</div>
 	);

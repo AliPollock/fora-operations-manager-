@@ -20,6 +20,7 @@ export const PortalContainer = observer((props: PortalContainerProps) => {
 	}, [props.store.locations]); // Re-render when locations are loaded
 
 	// when the location changes, fetch the bookings, viewings, moves for that location or availability depending on page
+	// This is a bit of a heavy handed aproach to build quickly but would separate out the state change scenarios more carefully in production
 	useEffect(() => {
 		if (props.store.currentLocation !== undefined) {
 			if (props.store.page === OG_PAGE_TYPE.Home) {

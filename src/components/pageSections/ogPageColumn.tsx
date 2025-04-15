@@ -5,6 +5,7 @@ import { observer } from "mobx-react";
 export interface OgPageColumnProps {
 	title?: string;
 	children: React.ReactNode;
+	className: string;
 }
 
 export const OgPageColumn = observer((props: OgPageColumnProps) => {
@@ -28,7 +29,7 @@ export const OgPageColumn = observer((props: OgPageColumnProps) => {
 	}, [props.children]);
 
 	return (
-		<div ref={parentRef} className="og-page-column col-12">
+		<div ref={parentRef} className={"og-page-column col-12 " + props.className}>
 			{props.title && <h2 className="og-page-column-heading">{props.title}</h2>}
 			{props.children}
 		</div>
