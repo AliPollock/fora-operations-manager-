@@ -15,17 +15,15 @@ interface HomePageContentsProps {
 export const HomePageContents = observer((props: HomePageContentsProps) => {
 	const getBookingsComponents = () => {
 		const meetingRooms = props.store.getMeetingRoomsForCurrentLocation();
-		if (meetingRooms.length === 0) {
+		const bookings = props.store.getBookingsForCurrentLocation();
+		if (meetingRooms.length === 0 || bookings.length === 0) {
 			return <p className="og-no-meetings-message">No meetings scheduled</p>;
 		}
-		return props.store.getBookingsForCurrentLocation().map((booking, index) => {
-			const meetingRoom = meetingRooms.filter((room) => room.identifier === booking.meetingRoomIdentifier)[0];
-			return (
-				<div key={index}>
-					{" "}
-					<OgQRCard booking={booking} room={meetingRoom} />
-				</div>
-			);
+		return bookings.map((booking, index) => {
+			const meetingRoom = meetingRooms.filter((room) => room.identifier === booking.meetingRoomIdentifier);
+			if (meetingRoom.length > 0) {
+				return <OgQRCard key={index} booking={booking} room={meetingRoom[0]} />;
+			}
 		});
 	};
 
