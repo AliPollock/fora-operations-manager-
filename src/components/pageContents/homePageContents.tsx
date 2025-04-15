@@ -6,27 +6,30 @@ import { OgMeetingRoomInterface } from "@/models/interfaces/ogMeetingRoomInterfa
 import { OgQRCard } from "../cards/ogQRCard";
 import { observer } from "mobx-react";
 import { OperationsStore } from "@/stores/operationsStore";
+import { OgViewingCard } from "../cards/ogViewingCard";
+import "./homePageContents.scss";
 
 interface HomePageContentsProps {
 	store: OperationsStore;
 }
 
+// in production would have completely different components for mobile and desktop
+// This comoponent is a bit innefficient  and too large so it would better to have some store logic handle the data
 export const HomePageContents = observer((props: HomePageContentsProps) => {
 	return (
 		<div className="og-home-page-contents row">
-			<div className="col-6">
+			<div className="og-meetings-column col-6">
 				<OgPageColumn title={"Meetings"}>
 					{props.store.getBookingsForCurrentLocation().map((booking, index) => {
 						const meetingRoom = props.store.getMeetingRoomsForCurrentLocation().filter((room) => room.identifier === booking.meetingRoomIdentifier)[0];
-						console.log("meeting room", meetingRoom);
 						return <div key={index}>{meetingRoom ? <OgQRCard booking={booking} room={meetingRoom} /> : null}</div>;
 					})}
 				</OgPageColumn>
 			</div>
-			<div className="col-6">
+			<div className="og-viewing-move-column col-6">
 				<OgPageColumn title="Viewings">
 					{props.store.getViewingsForCurrentLocation().map((viewing, index) => {
-						return <p key={index}>{"viewings cards to be put here" + viewing.identifier}</p>;
+						return <OgViewingCard key={index} viewing={viewing} />;
 					})}
 				</OgPageColumn>
 				<OgPageColumn title="Move in/out">

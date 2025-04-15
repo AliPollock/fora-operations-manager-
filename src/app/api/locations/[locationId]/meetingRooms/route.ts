@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 import { fetchMeetingRoomsForLocation } from "../../../../../mockData/meetingRooms";
 import { notFound } from "next/navigation";
 
+// This route will get all meeting rooms for a location
 export async function GET(request: Request, { params }: { params: Promise<{ locationId: string }> }) {
-	// list specific meeting room: GET /meetingRooms/{meetingRoomId}
 	const { locationId } = await params;
 
 	const meetingRooms = await fetchMeetingRoomsForLocation(locationId);

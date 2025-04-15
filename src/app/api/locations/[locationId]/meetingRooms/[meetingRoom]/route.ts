@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import { fetchMeetingRoomWithId } from "../../../../../../mockData/meetingRooms";
 
+// This route will get a specific meeting room
 export async function GET(request: Request, { params }: { params: Promise<{ meetingRoomId: string }> }) {
 	const { meetingRoomId } = await params;
-	// console.log(`Fetching meeting room with ID: ${meetingRoomId}`);
 
 	const meetingRoom = await fetchMeetingRoomWithId(meetingRoomId);
 

@@ -1,0 +1,43 @@
+.og-column-card {
+	background-color: white;
+	border-radius: 8px;
+	margin-right: 5%;
+	margin-left: 5%;
+	margin-top: 3%;
+	margin-bottom: 3%;
+	height: 90px;
+	align-items: center;
+
+	.og-column-card-title {
+		font-size: large;
+		font-weight: 600;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.og-column-card-bottom-left {
+		font-size: medium;
+	}
+
+	.og-column-card-right {
+		justify-content: center;
+		display: flex;
+		height: 42%;
+	}
+}
+
+.og-qr-card-qr-wrapper {
+	background-color: #545f71;
+	width: 57%;
+	max-width: 38px;
+	border-radius: 8px;
+	justify-content: center;
+	display: flex;
+
+	.bi-qr-code {
+		color: white;
+		align-self: center;
+		font-size: 14px;
+	}
+}

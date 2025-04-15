@@ -84,16 +84,13 @@ export class OperationsStore {
 				return [];
 			})
 			.then((meetingRooms) => {
-				console.log("successfully got meeting rooms");
 				runInAction(() => {
 					this.meetingRooms = meetingRooms;
-					console.log("changed meeting rooms");
 				});
 			});
 	}
 
 	@action getBookingsForLocation(location: OgLocationInterface) {
-		console.log("location: ", location.identifier, location.name, location.city);
 		axios
 			.get("/api/locations/" + location.identifier + "/meetingRoomBookings")
 			.then((response) => {
@@ -104,9 +101,27 @@ export class OperationsStore {
 				return [];
 			})
 			.then((meetingRoomBookings) => {
-				console.log("successfully got bookings");
 				runInAction(() => {
 					this.roomBookings = meetingRoomBookings;
+				});
+			});
+	}
+
+	// this will be an api method that will return all the viewings for a location
+	@action getViewingsForLocation(location: OgLocationInterface) {
+		axios
+			.get("/api/locations/" + location.identifier + "/viewings")
+			.then((response) => {
+				return response.data as OgViewingInterface[];
+			})
+			.catch((error) => {
+				console.log("viewings error" + error);
+				return [];
+			})
+			.then((viewings) => {
+				console.log("successfully got viewings");
+				runInAction(() => {
+					this.viewings = viewings;
 				});
 			});
 	}
@@ -117,11 +132,6 @@ export class OperationsStore {
 	}
 	// this will be an api method that will return all the move ins/outsfor a location
 	getMovesForLocation(location: OgLocationInterface) {
-		return [];
-	}
-
-	// this will be an api method that will return all the viewings for a location
-	getViewingsForLocation(location: OgLocationInterface) {
 		return [];
 	}
 
